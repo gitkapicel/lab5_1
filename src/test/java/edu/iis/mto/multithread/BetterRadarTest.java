@@ -6,11 +6,16 @@ import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.Executor;
 
+import org.junit.Rule;
 import org.junit.Test;
 
-public class BetterRadarTest {
+import edu.iis.mto.multithread.RepeatRule.Repeat;
 
+public class BetterRadarTest {
+	@Rule
+    public RepeatRule repeatRule = new RepeatRule();
 	@Test
+	@Repeat( times = 10000 )
 	public void launchPatriotOnceWhenNoticesAScudMissle() {
 		PatriotBattery batteryMock = mock(PatriotBattery.class);
 		BetterRadar radar = new BetterRadar(batteryMock);
